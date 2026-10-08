@@ -139,6 +139,7 @@ public class SensorColor extends LinearOpMode {
     // the values you get from ColorSensor are dependent on the specific sensor you're using.
     colorSensor = hardwareMap.get(NormalizedColorSensor.class, "sensor_color");
 
+
     // If possible, turn the light on in the beginning (it might already be on anyway,
     // we just make sure it is if we can).
     if (colorSensor instanceof SwitchableLight) {
