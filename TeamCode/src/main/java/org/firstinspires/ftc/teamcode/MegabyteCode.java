@@ -6,7 +6,10 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcontroller.external.samples.externalhardware.RobotHardware;
 
 @TeleOp(name="MegabyteCode", group = "Linear OpMode")
 public class MegabyteCode extends LinearOpMode {
@@ -25,7 +28,7 @@ public class MegabyteCode extends LinearOpMode {
     private DcMotor rightShootMotor = null;
 
     @Override
-    public void runOpMode(){
+    public void runOpMode() {
 
         frontRightDrive = hardwareMap.get(DcMotor.class, "fr");
         backRightDrive = hardwareMap.get(DcMotor.class, "br");
@@ -41,10 +44,8 @@ public class MegabyteCode extends LinearOpMode {
         rightShootMotor = hardwareMap.get(DcMotor.class, "rshoot");
 
 
-
-    rightServo.scaleRange(0,300);
-    leftServo.scaleRange(0,300);
-
+        rightServo.scaleRange(0, 300);
+        leftServo.scaleRange(0, 300);
 
 
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
@@ -63,11 +64,11 @@ leftServo.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 
-        while (opModeIsActive()){
+        while (opModeIsActive()) {
 
             double forward = -gamepad1.left_stick_y;
-            double strafe = gamepad1.left_stick_x*1.1;
-            double turn = gamepad1.right_stick_x;
+            double strafe = gamepad1.left_stick_x * 1.1;
+            double turn = -gamepad1.right_stick_x;
 
 
             double flDrive = forward + strafe + turn;
@@ -97,7 +98,7 @@ leftServo.setDirection(Servo.Direction.REVERSE);
                 intakeMotor.setPower(intakePower);
             }
 
-            double shooterpower = gamepad1.right_trigger*0.7;
+            double shooterpower = gamepad1.right_trigger*1.0;
 
             setShooterPower(shooterpower);
 
@@ -109,7 +110,7 @@ leftServo.setDirection(Servo.Direction.REVERSE);
             }
         }
     }
-    public void setShooterPower(double shooterPower){
+     public void setShooterPower(double shooterPower){
     leftShootMotor.setPower(shooterPower);
     rightShootMotor.setPower(shooterPower);
     }
@@ -117,7 +118,5 @@ leftServo.setDirection(Servo.Direction.REVERSE);
     public void setServoAngle(double angle){
         leftServo.setPosition(angle);
         rightServo.setPosition(angle);
+        }
     }
-}
-
-
