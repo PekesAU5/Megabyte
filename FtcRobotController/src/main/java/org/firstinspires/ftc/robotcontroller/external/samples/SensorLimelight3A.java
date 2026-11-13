@@ -57,7 +57,7 @@ import java.util.List;
  *
  *   Since the Limelight is plugged into a USB port, it will be listed on the top level configuration
  *   activity along with the Control Hub Portal and other USB devices such as webcams.  Typically
- *   serial numbers are displayed below the device's names.  In the case of the Limelight device, the
+ *   serial numbers are displayed below the device's names. In the case of the Limelight device, the
  *   Control Hub's assigned ip address for that ethernet interface is used as the "serial number".
  *
  *   Tapping the Limelight's name, transitions to a new screen where the user can rename the Limelight
