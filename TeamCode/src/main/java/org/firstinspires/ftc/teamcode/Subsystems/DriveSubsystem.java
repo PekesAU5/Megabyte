@@ -58,9 +58,9 @@ public class DriveSubsystem {
     // Autonomous helpers (encoder based)
 
     //Starts a move without blocking. Check isBusy() to know when it finishes.
-    public void startMoveMilimeters(double forwardMM, double strafeInches, double power) {
-        int f = (int) Math.round(forwardMM * TICKS_PER_MM);
-        int s = (int) Math.round(strafeInches * TICKS_PER_MM * STRAFE);
+    public void startMoveCentimeters(double forwardCM, double strafeCM, double power){
+        int f = (int) Math.round(forwardCM * TICKS_PER_MM);
+        int s = (int) Math.round(strafeCM * TICKS_PER_MM * STRAFE);
 
         setRunMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 

@@ -15,6 +15,7 @@ public class Robot {
             transfer = new TransferSubsystem(hw);
         }
 
+
         public void stopAll() {
             drive.stop();
             intake.stop();

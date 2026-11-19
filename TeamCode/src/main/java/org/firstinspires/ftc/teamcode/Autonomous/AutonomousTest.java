@@ -14,13 +14,15 @@ public class AutonomousTest extends LinearOpMode {
     private DcMotor frontRightDrive = null;
     private DcMotor backRightDrive = null;
 
-    private DcMotor intakeMotor = null;
+    /*private DcMotor intakeMotor = null;
 
     private Servo leftServo = null;
     private  Servo rightServo = null;
 
     private DcMotor leftShootMotor = null;
     private DcMotor rightShootMotor = null;
+
+     */
     private ElapsedTime runtime = new ElapsedTime();
     static final double COUNTS_PER_MOTOR_REV = 537.7;   // goBILDA 5203, 19.2:1 (includes the gearbox)
     static final double DRIVE_GEAR_REDUCTION = 1.0;     // only change if you add gears/belts after the motor
@@ -42,13 +44,15 @@ public class AutonomousTest extends LinearOpMode {
         backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.REVERSE);
 
-        intakeMotor = hardwareMap.get(DcMotor.class, "intake");
+        /*intakeMotor = hardwareMap.get(DcMotor.class, "intake");
 
         leftServo = hardwareMap.get(Servo.class, "lservo");
         rightServo = hardwareMap.get(Servo.class, "rservo");
 
         leftShootMotor = hardwareMap.get(DcMotor.class, "lshoot");
         rightShootMotor = hardwareMap.get(DcMotor.class, "rshoot");
+
+         */
 
         //RESETTING ENCODERS BEFORE THE PROGRAM BEGINS
         frontLeftDrive.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
