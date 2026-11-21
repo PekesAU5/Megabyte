@@ -19,7 +19,7 @@ public class AprilTagLimelightTest extends LinearOpMode {
 
     private Limelight3A limelight;
     private IMU imu;
-    private Position Limelight_Position=  new Position(de)
+    private Position Limelight_Position=  new Position();
 
     @Override
     public void runOpMode() {
@@ -34,11 +34,14 @@ public class AprilTagLimelightTest extends LinearOpMode {
         imu.initialize(new IMU.Parameters(orientationOnRobot));
 
         limelight.start();
-
+        waitForStart();
+        while (opModeIsActive()){
+            LLloop();
+        }
 
     }
 
-    public void loop() {
+    public void LLloop() {
         YawPitchRollAngles orientation = imu.getRobotYawPitchRollAngles();
         limelight.updateRobotOrientation(orientation.getYaw());
         LLResult llResult = limelight.getLatestResult();
@@ -46,8 +49,6 @@ public class AprilTagLimelightTest extends LinearOpMode {
         if (llResult == null) {
             telemetry.addData("Status", "No result from Limelight (check connection/power)");
         } else if (llResult.isValid()) {
-            telemetry.addData("Status", "Result received, but no valid target in view");
-        } else {
             Pose3D botpose = llResult.getBotpose_MT2();
             telemetry.addData("Status", "Target found");
             telemetry.addData("Tx", llResult.getTx());
@@ -55,7 +56,11 @@ public class AprilTagLimelightTest extends LinearOpMode {
             telemetry.addData("Ta", llResult.getTa());
             telemetry.addData("BotPose", llResult.getBotpose_MT2());
             telemetry.addData("Yaw", botpose.getOrientation().getYaw());
+
+        } else {
+            telemetry.addData("Status", "Result received, but no valid target in view");
         }
+
         /*if (llResult != null && llResult.isValid()) {
             Pose3D botpose = llResult.getBotpose_MT2();
             telemetry.addData("Status", "Target found");
