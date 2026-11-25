@@ -10,14 +10,15 @@ import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 @TeleOp (name = "MegabyteCodeTest", group = "Test")
 public class MegabyteCodeTest extends LinearOpMode {
 
-    public double servo_button = 0;
+
     @Override
     public void runOpMode(){
         Robot robot = new Robot(hardwareMap);
         telemetry.addData("Status", "Robot Initialized");
         telemetry.update();
 
-
+robot.transfer.resetServo();
+robot.intake.resetservo();
         waitForStart();
 
         while(opModeIsActive()) {
@@ -31,14 +32,20 @@ public class MegabyteCodeTest extends LinearOpMode {
             }else{robot.intake.setPower(-gamepad1.left_trigger);
             robot.transfer.activateTransfer();}
 
-            robot.shooter.setShooterPower(gamepad2.right_trigger);
+            robot.shooter.setShooterPower(gamepad1.right_trigger);
 
-            if(gamepad2.x){servo_button += 1;}
 
-            if(servo_button % 2 == 0){
+
+            if(gamepad1.x){
                 robot.transfer.CLOSE();
-            } else{
+            } else if(gamepad1.b){
                 robot.transfer.OPEN();
+            }
+
+            if(gamepad1.y){
+                robot.intake.UP();
+            } else if(gamepad1.a){
+                robot.intake.DOWN();
             }
 
             robot.stopAll();

@@ -7,6 +7,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.Ground.TransferConstants;
+
 public class TransferSubsystem {
     public static final double SERVO_CLOSE = 0;
     public static final double SERVO_OPEN = 300;
@@ -21,6 +23,9 @@ public class TransferSubsystem {
         leftServo.setDirection(Servo.Direction.FORWARD);
     }
 
+    public void resetServo() {
+        setPositionDegrees(0);
+    }
     public void setServoAngle(double angle) {
         leftServo.setPosition(angle);
     }
@@ -38,8 +43,9 @@ public class TransferSubsystem {
     }
 
     public void setPositionDegrees(double degrees){
+
         double pos = Math.max(0.0,
-                Math.min(1.0,degrees/SERVO_OPEN));
+                Math.min(1.0,degrees/ TransferConstants.SERVO_MAX));
         leftServo.setPosition(pos);
     }
 

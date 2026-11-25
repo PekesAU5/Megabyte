@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.teamcode.Ground;
 
 public class TransferConstants {
-    public static double SERVO_DOWN = 0;
-    public static double SERVO_UP = 300;
+    public static double SERVO_CLOSE = 38;
+    public static double SERVO_OPEN = 0;
+    public static final double SERVO_MAX = 300;
     public static double SERVO_ANGLE_UP= 60;
     public static double SERVO_ANGLE_DOWN= 0;
 
