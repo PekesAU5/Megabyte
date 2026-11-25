@@ -1,0 +1,57 @@
+package org.firstinspires.ftc.teamcode.mechanisms;
+
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.Subsystems.DriveSubsystem;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
+
+@TeleOp (name = "MegabyteCodeTest", group = "Test")
+public class MegabyteCodeTest extends LinearOpMode {
+
+    public double servo_button = 0;
+    @Override
+    public void runOpMode(){
+        Robot robot = new Robot(hardwareMap);
+        telemetry.addData("Status", "Robot Initialized");
+        telemetry.update();
+
+
+        waitForStart();
+
+        while(opModeIsActive()) {
+            robot.Chassis.drive(-gamepad1.left_stick_y, gamepad1.left_stick_x * DriveSubsystem.STRAFE, -gamepad1.right_stick_x);
+
+            if (gamepad1.left_bumper) {
+                robot.intake.out(0.6);
+                robot.transfer.reverseTransfer();
+
+
+            } else if (gamepad1.left_trigger > 0.2) {
+                robot.intake.setPower(-gamepad1.left_trigger);
+                robot.transfer.activateTransfer();
+            }
+            else{robot.transfer.stopTransfer();
+                robot.intake.stop();}
+
+            robot.shooter.setShooterPower(gamepad1.right_trigger);
+
+            if (gamepad2.x) {
+                servo_button += 1;
+            }
+
+            if (servo_button % 2 == 0) {
+                robot.transfer.CLOSE();
+            } else {
+                robot.transfer.OPEN();
+            }
+        }
+            robot.stopAll();
+
+
+        }
+
+    }
+
+
